@@ -9,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # Load data
 @st.cache_data
 def load_data():
-    return pd.read_excel(r"d:\\programing\\intership 2025\\Project 4 tourism\\cleaned_tourism_data.xlsx")
+    return pd.read_excel("cleaned_tourism_data.xlsx")
 
 data = load_data()
 
@@ -123,4 +123,5 @@ elif section == "Recommendation":
             st.write("Similar Attractions:", similar.index.tolist())
 
     except Exception as e:
+
         st.error(f"Content-based filtering failed: {e}")
