@@ -152,8 +152,9 @@ elif section == "Recommendation":
                 if st.button("Get Similar Attractions"):
                     similar = attraction_sim_df[attraction_input].sort_values(ascending=False)[1:6]
                     st.write("Similar Attractions:", similar.index.tolist())
-try:
+            try:
     # Your collaborative and content-based filtering code here
-except Exception as e:
-    st.error(f"Recommendation section crashed: {e}")
+                except Exception as e:
+                    st.error(f"Recommendation section crashed: {e}")
+
 
