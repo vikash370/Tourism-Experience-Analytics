@@ -79,9 +79,16 @@ elif section == "Classification":
 elif section == "Recommendation":
     st.header("🤝 Attraction Recommendation System")
 
-    # 🔍 Show available columns for debugging
-    st.write("Available columns in dataset:", data.columns.tolist())
+    # 🔍 Show dataset preview and column names
+    st.subheader("Dataset Preview")
+    st.dataframe(data.head())
+    st.write("Columns:", data.columns.tolist())
+    st.write("Shape:", data.shape)
 
+    # 🔍 Check for nulls
+    st.write("Missing values per column:")
+    st.write(data.isnull().sum())
+    
     # ✅ Collaborative Filtering
     st.subheader("Collaborative Filtering")
     required_cols = ["UserId", "Attraction", "Rating"]
@@ -145,5 +152,8 @@ elif section == "Recommendation":
                 if st.button("Get Similar Attractions"):
                     similar = attraction_sim_df[attraction_input].sort_values(ascending=False)[1:6]
                     st.write("Similar Attractions:", similar.index.tolist())
-        except Exception as e:
-            st.error(f"Content-based filtering failed: {e}")
+try:
+    # Your collaborative and content-based filtering code here
+except Exception as e:
+    st.error(f"Recommendation section crashed: {e}")
+
